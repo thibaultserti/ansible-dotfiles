@@ -2,7 +2,7 @@
 # tasks file for zsh
 
 - include_tasks: install.yml
-  tags: [ zsh, install ]
+  tags: [zsh, install]
 
 - include_tasks: configure.yml
-  tags: [ zsh, configure ]
+  tags: [zsh, configure]
