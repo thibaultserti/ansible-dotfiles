@@ -1,5 +1,4 @@
 ---
-
 - name: Set zsh as default shell
   user:
     name: "{{ zsh_user_id }}"

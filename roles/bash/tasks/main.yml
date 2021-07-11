@@ -1,0 +1,8 @@
+---
+# tasks file for bash
+
+- include_tasks: install.yml
+  tags: [bash, install]
+
+- include_tasks: configure.yml
+  tags: [bash, configure]

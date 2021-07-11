@@ -1,0 +1,6 @@
+---
+- name: Install bash
+  package:
+    name:
+      - bash
+    state: present

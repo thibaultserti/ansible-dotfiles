@@ -1,0 +1,16 @@
+---
+- name: Write .bashrc config
+  template:
+    src: bashrc.bash.j2
+    dest: "{{ bash_user_dir }}/.bashrc"
+    owner: "{{ bash_user_id }}"
+    group: "{{ bash_user_group }}"
+    mode: 0640
+
+- name: Write .bashprofile config
+  copy:
+    src: bashenv.bash
+    dest: "{{ bash_user_dir }}/.bashenv"
+    owner: "{{ bash_user_id }}"
+    group: "{{ bash_user_group }}"
+    mode: 0640
