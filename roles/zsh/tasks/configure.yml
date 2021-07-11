@@ -1,0 +1,43 @@
+---
+
+- name: Set zsh as default shell
+  user:
+    name: "{{ zsh_user_id }}"
+    shell: /bin/zsh
+  become: true
+
+- name: Write .zshrc config
+  template:
+    src: zshrc.zsh.j2
+    dest: "{{ zsh_user_dir }}/.zshrc"
+    owner: "{{ zsh_user_id }}"
+    group: "{{ zsh_user_group }}"
+    mode: 0640
+
+- name: Write .zshenv config
+  copy:
+    src: zshenv.zsh
+    dest: "{{ zsh_user_dir }}/.zshenv"
+    owner: "{{ zsh_user_id }}"
+    group: "{{ zsh_user_group }}"
+    mode: 0640
+
+- name: Create .zsh
+  file:
+    path: "{{ zsh_user_dir }}/.zsh/"
+    state: directory
+    mode: 0750
+
+- name: Create .zsh_custom_dir
+  file:
+    path: "{{ zsh_user_dir }}/.zsh/custom/"
+    state: directory
+    mode: 0750
+
+- name: Install plugins
+  template:
+    src: plugins.zsh.j2
+    dest: "{{ zsh_user_dir }}/.zsh/plugins.zsh"
+    owner: "{{ zsh_user_id }}"
+    group: "{{ zsh_user_group }}"
+    mode: 0640
