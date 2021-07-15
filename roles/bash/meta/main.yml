@@ -2,6 +2,8 @@ galaxy_info:
   author: Thibault Ayanides
   description: Install bash
   company: Thibault Ayanides
+  role_name: bash
+
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value

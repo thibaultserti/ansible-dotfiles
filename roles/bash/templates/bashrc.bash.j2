@@ -98,61 +98,61 @@ fi
 
 # Loads bash specific functions and aliases.
 
-DIRECTORY=~/.bash
+DIRECTORY=~/{{ bash_dir }}
+{% raw %}
 if [ -d "$DIRECTORY" ]; then
     files=($DIRECTORY/*.bash) 2> /dev/null
-    if [ ${\#files[@]} -gt 0 ]; then
+    if [ ${#files[@]} -gt 0 ]; then
         for file in "${files[@]}"; do
             # shellcheck disable=SC1090
             source "$file"
         done
     fi
 fi
+{% endraw %}
 
-DIRECTORY=~/.bash/custom
+
+DIRECTORY=~/{{ bash_dir }}/custom
+{% raw %}
 if [ -d "$DIRECTORY" ]; then
     files=($DIRECTORY/*.bash) 2> /dev/null
-    if [ ${\#files[@]} -gt 0 ]; then
+    if [ ${#files[@]} -gt 0 ]; then
         for file in "${files[@]}"; do
             # shellcheck disable=SC1090
             source "$file"
         done
     fi
 fi
+{% endraw %}
 
 # Loads global aliases
-DIRECTORY=~/.shell/env
-if [ -d "$DIRECTORY" ]; then
-    files=($DIRECTORY/*.sh) 2> /dev/null
-    if [ ${\#files[@]} -gt 0 ]; then
-        for file in "${files[@]}"; do
-            # shellcheck disable=SC1090
-            source "$file"
-        done
-    fi
-fi
 
-DIRECTORY=~/.shell/aliases
+DIRECTORY=~/{{ shell_dir }}
+{% raw %}
 if [ -d "$DIRECTORY" ]; then
     files=($DIRECTORY/*.sh) 2> /dev/null
-    if [ ${\#files[@]} -gt 0 ]; then
+    if [ ${#files[@]} -gt 0 ]; then
         for file in "${files[@]}"; do
             # shellcheck disable=SC1090
             source "$file"
         done
     fi
 fi
+{% endraw %}
 
-DIRECTORY=~/.shell/custom
+
+DIRECTORY=~/{{ shell_dir }}/custom
+{% raw %}
 if [ -d "$DIRECTORY" ]; then
     files=($DIRECTORY/*.sh) 2> /dev/null
-    if [ ${\#files[@]} -gt 0 ]; then
+    if [ ${#files[@]} -gt 0 ]; then
         for file in "${files[@]}"; do
             # shellcheck disable=SC1090
             source "$file"
         done
     fi
 fi
+{% endraw %}
 
 #------------------------------------------////
 # System Information:

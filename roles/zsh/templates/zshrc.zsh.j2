@@ -65,73 +65,72 @@ ZSH_THEME={{ theme }}
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# shellcheck disable=SC1091
-source "$ZSH/oh-my-zsh.sh"
-
 # zsh specific functions and aliases
 
-DIRECTORY=~/.zsh
+DIRECTORY=~/{{ zsh_dir }}
+{% raw %}
 if [ -d "$DIRECTORY" ]; then
-    files=($DIRECTORY/*.zsh) 2> /dev/null
-    if [ ${\#files[@]} -gt 0 ]; then
-        for file in "${files[@]}"; do
+    files=("${(f)$(find "$DIRECTORY" -type f -name "*.zsh")}")
+    for file in "${files[@]}"; do
+        if [ "x$file" != "x" ]; then
             # shellcheck disable=SC1090
             source "$file"
-        done
-    fi
+        fi
+    done
 fi
+{% endraw %}
 
-DIRECTORY=~/.zsh/custom
+
+DIRECTORY=~/{{ zsh_dir }}/custom
+{% raw %}
 if [ -d "$DIRECTORY" ]; then
-    files=($DIRECTORY/*.zsh) 2> /dev/null
-    if [ ${\#files[@]} -gt 0 ]; then
-        for file in "${files[@]}"; do
+    files=("${(f)$(find "$DIRECTORY" -type f -name "*.zsh")}")
+    for file in "${files[@]}"; do
+        if [ "x$file" != "x" ]; then
             # shellcheck disable=SC1090
             source "$file"
-        done
-    fi
+        fi
+    done
 fi
-
+{% endraw %}
 
 
 # Loads global aliases
-DIRECTORY=~/.shell/env
+DIRECTORY=~/{{ shell_dir }}
+{% raw %}
 if [ -d "$DIRECTORY" ]; then
-    files=($DIRECTORY/*.sh) 2> /dev/null
-    if [ ${\#files[@]} -gt 0 ]; then
-        for file in "${files[@]}"; do
+    files=("${(f)$(find "$DIRECTORY" -type f -name "*.sh")}")
+    for file in "${files[@]}"; do
+        if [ "x$file" != "x" ]; then
             # shellcheck disable=SC1090
             source "$file"
-        done
-    fi
+        fi
+    done
 fi
+{% endraw %}
 
-DIRECTORY=~/.shell/aliases
-if [ -d "$DIRECTORY" ]; then
-    files=($DIRECTORY/*.sh) 2> /dev/null
-    if [ ${\#files[@]} -gt 0 ]; then
-        for file in "${files[@]}"; do
-            # shellcheck disable=SC1090
-            source "$file"
-        done
-    fi
-fi
 
-DIRECTORY=~/.shell/custom
+DIRECTORY=~/{{ shell_dir }}/custom
+{% raw %}
 if [ -d "$DIRECTORY" ]; then
-    files=($DIRECTORY/*.sh) 2> /dev/null
-    if [ ${\#files[@]} -gt 0 ]; then
-        for file in "${files[@]}"; do
+    files=("${(f)$(find "$DIRECTORY" -type f -name "*.sh")}")
+    for file in "${files[@]}"; do
+        if [ "x$file" != "x" ]; then
             # shellcheck disable=SC1090
             source "$file"
-        done
-    fi
+        fi
+    done
 fi
+{% endraw %}
+
+
+# shellcheck disable=SC1091
+source "$ZSH/oh-my-zsh.sh"
 
 #------------------------------------------////
 # System Information:
 #------------------------------------------////
-clear
+
 echo -e ""
 echo -e "  ${COLOR_LIGHT_BLUE}Today  :${COLOR_NC}${COLOR_LIGHT_CYAN}       $(date)"
 echo -e "  ${COLOR_LIGHT_BLUE}System :${COLOR_NC}${COLOR_LIGHT_CYAN}       $(lsb_release -i | cut -f 2) - $(lsb_release -c | cut -f 2) - $(lsb_release -r | cut -f 2)"
