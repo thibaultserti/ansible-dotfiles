@@ -7,10 +7,27 @@
     group: "{{ bash_user_group }}"
     mode: 0640
 
-- name: Write .bashprofile config
+- name: Write .bash_profile config
   copy:
-    src: bashenv.bash
-    dest: "{{ bash_user_dir }}/.bashenv"
+    src: bash_profile.bash
+    dest: "{{ bash_user_dir }}/.bash_profile"
     owner: "{{ bash_user_id }}"
     group: "{{ bash_user_group }}"
     mode: 0640
+
+- name: Create .bash
+  file:
+    path: "{{ bash_user_dir }}/{{ bash_dir }}/"
+    state: directory
+    mode: 0750
+
+- name: Create .bash custom dir
+  file:
+    path: "{{ bash_user_dir }}/{{ bash_dir }}/custom/"
+    state: directory
+    mode: 0750
+
+- name: Ensure .bash_aliases is absent
+  file:
+    path: "{{ bash_user_dir }}/.bash_aliases"
+    state: absent

@@ -68,18 +68,72 @@ ZSH_THEME={{ theme }}
 # shellcheck disable=SC1091
 source "$ZSH/oh-my-zsh.sh"
 
-files=(~/.zsh/*.zsh) 2> /dev/null
-if [ ${\#files[@]} -gt 0 ]; then
-    for file in "${files[@]}"; do
-        # shellcheck disable=SC1090
-        source "$file"
-    done
+# zsh specific functions and aliases
+
+DIRECTORY=~/.zsh
+if [ -d "$DIRECTORY" ]; then
+    files=($DIRECTORY/*.zsh) 2> /dev/null
+    if [ ${\#files[@]} -gt 0 ]; then
+        for file in "${files[@]}"; do
+            # shellcheck disable=SC1090
+            source "$file"
+        done
+    fi
 fi
 
-files=(~/.zsh/custom/*.zsh) 2> /dev/null
-if [ ${\#files[@]} -gt 0 ]; then
-    for file in "${files[@]}"; do
-        # shellcheck disable=SC1090
-        source "$file"
-    done
+DIRECTORY=~/.zsh/custom
+if [ -d "$DIRECTORY" ]; then
+    files=($DIRECTORY/*.zsh) 2> /dev/null
+    if [ ${\#files[@]} -gt 0 ]; then
+        for file in "${files[@]}"; do
+            # shellcheck disable=SC1090
+            source "$file"
+        done
+    fi
 fi
+
+
+
+# Loads global aliases
+DIRECTORY=~/.shell/env
+if [ -d "$DIRECTORY" ]; then
+    files=($DIRECTORY/*.sh) 2> /dev/null
+    if [ ${\#files[@]} -gt 0 ]; then
+        for file in "${files[@]}"; do
+            # shellcheck disable=SC1090
+            source "$file"
+        done
+    fi
+fi
+
+DIRECTORY=~/.shell/aliases
+if [ -d "$DIRECTORY" ]; then
+    files=($DIRECTORY/*.sh) 2> /dev/null
+    if [ ${\#files[@]} -gt 0 ]; then
+        for file in "${files[@]}"; do
+            # shellcheck disable=SC1090
+            source "$file"
+        done
+    fi
+fi
+
+DIRECTORY=~/.shell/custom
+if [ -d "$DIRECTORY" ]; then
+    files=($DIRECTORY/*.sh) 2> /dev/null
+    if [ ${\#files[@]} -gt 0 ]; then
+        for file in "${files[@]}"; do
+            # shellcheck disable=SC1090
+            source "$file"
+        done
+    fi
+fi
+
+#------------------------------------------////
+# System Information:
+#------------------------------------------////
+clear
+echo -e ""
+echo -e "  ${COLOR_LIGHT_BLUE}Today  :${COLOR_NC}${COLOR_LIGHT_CYAN}       $(date)"
+echo -e "  ${COLOR_LIGHT_BLUE}System :${COLOR_NC}${COLOR_LIGHT_CYAN}       $(lsb_release -i | cut -f 2) - $(lsb_release -c | cut -f 2) - $(lsb_release -r | cut -f 2)"
+echo -e "  ${COLOR_LIGHT_BLUE}Kernel :${COLOR_NC}${COLOR_LIGHT_CYAN}       $(uname -o) $(uname -r) - $(uname -m)"
+echo -e ""

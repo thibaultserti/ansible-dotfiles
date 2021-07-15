@@ -23,20 +23,20 @@
 
 - name: Create .zsh
   file:
-    path: "{{ zsh_user_dir }}/.zsh/"
+    path: "{{ zsh_user_dir }}/{{ zsh_dir }}/"
     state: directory
     mode: 0750
 
-- name: Create .zsh_custom_dir
+- name: Create .zsh custom dir
   file:
-    path: "{{ zsh_user_dir }}/.zsh/custom/"
+    path: "{{ zsh_user_dir }}/{{ zsh_dir }}/custom/"
     state: directory
     mode: 0750
 
 - name: Install plugins
   template:
     src: plugins.zsh.j2
-    dest: "{{ zsh_user_dir }}/.zsh/plugins.zsh"
+    dest: "{{ zsh_user_dir }}/{{ zsh_dir }}/plugins.zsh"
     owner: "{{ zsh_user_id }}"
     group: "{{ zsh_user_group }}"
     mode: 0640
