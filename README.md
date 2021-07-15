@@ -36,4 +36,4 @@ Here is the list playbook ans roles I use.
 
 Execute with this
 
-`ansible-playbook -i hosts.ini --connection=local playbook.yml`
+`ansible-playbook -i hosts.ini --connection=local --ask-become-pass playbook.yml`

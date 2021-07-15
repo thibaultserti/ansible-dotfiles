@@ -7,18 +7,6 @@
     state: directory
     mode: 0750
 
-- name: Create {{ shell_dir }}/env
-  file:
-    path: "{{ shell_user_dir }}/{{ shell_dir }}/env/"
-    state: directory
-    mode: 0750
-
-- name: Create {{ shell_dir }}/aliases
-  file:
-    path: "{{ shell_user_dir }}/{{ shell_dir }}/aliases/"
-    state: directory
-    mode: 0750
-
 - name: Create {{ shell_dir }}/custom
   file:
     path: "{{ shell_user_dir }}/{{ shell_dir }}/custom/"

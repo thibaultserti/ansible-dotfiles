@@ -5,6 +5,6 @@
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     {% for plugin in plugins %}
-    plugin
+    {{ plugin }}
     {% endfor %}
 )

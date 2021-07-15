@@ -3,32 +3,39 @@ name: Molecule
 on:
   push:
     branches:
-      - master
-      - release/v*
+      - main
   pull_request:
     branches:
-      - master
-
+      - main
 jobs:
-  molecule:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        scenario:
-          - centos-7
-          - debian-9
-          - fedora-28
-          - oraclelinux-7
-          - ubuntu-18.04
+  lint:
+    runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v2
         with:
           path: "${{ github.repository }}"
-      - name: Molecule
-        uses: gofrolist/molecule-action@v2
+      - name: molecule
+        uses: robertdebock/molecule-action@2.6.17
         with:
-          molecule_options: --debug --base-config molecule/_shared/base.yml
-          molecule_command: test
-          molecule_args: --scenario-name ${{ matrix.scenario }}
+          command: lint
+  test:
+    needs:
+      - lint
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        image:
+          - archlinux
+          - ubuntu
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+      - name: molecule
+        uses: robertdebock/molecule-action@2.6.17
+        with:
+          image: "${{ matrix.image }}"
+          options: parallel
+          scenario: default
