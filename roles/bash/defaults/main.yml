@@ -3,3 +3,5 @@
 bash_user_dir: "{{ ansible_user_dir }}"
 bash_user_id: "{{ ansible_user_id }}"
 bash_user_group: "{{ ansible_user_id }}"
+
+bash_dir: .bash

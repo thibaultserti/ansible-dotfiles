@@ -1,0 +1,8 @@
+---
+# defaults file for shell-common
+shell_user_dir: "{{ ansible_user_dir }}"
+shell_user_id: "{{ ansible_user_id }}"
+shell_user_group: "{{ ansible_user_id }}"
+
+
+shell_dir: .shell

@@ -30,3 +30,10 @@ Here is the list playbook ans roles I use.
 |                 | ❌          |
 |                 | ❌          |
 |                 | ❌          |
+
+
+# Playbooks
+
+Execute with this
+
+`ansible-playbook -i hosts.ini --connection=local playbook.yml`

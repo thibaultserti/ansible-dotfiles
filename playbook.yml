@@ -1,0 +1,7 @@
+---
+- name: "Installation"
+  hosts: all
+  roles:
+    - role: "zsh"
+      theme: agnoster
+    - role: "bash"
