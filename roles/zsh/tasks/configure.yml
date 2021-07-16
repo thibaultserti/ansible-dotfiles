@@ -33,7 +33,7 @@
     state: directory
     mode: 0750
 
-- name: Install plugins
+- name: Copy plugins
   template:
     src: plugins.zsh.j2
     dest: "{{ zsh_user_dir }}/{{ zsh_dir }}/plugins.zsh"

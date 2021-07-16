@@ -8,3 +8,9 @@ plugins+=(
     {{ plugin }}
     {% endfor %}
 )
+
+plugins+=(
+    {% for plugin in custom_plugins %}
+    {{ plugin.name }}
+    {% endfor %}
+)

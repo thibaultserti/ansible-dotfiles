@@ -3,6 +3,7 @@
   package:
     name:
       - zsh
+      - git
     state: present
 
 - name: Check for oh-my-zsh installation
@@ -20,3 +21,18 @@
 - name: Install oh-my-zsh
   raw: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
   when: not oh_my_zsh_stat.stat.exists
+
+
+- name: Install plugins
+  ansible.builtin.git:
+    repo: "{{ item.url }}.git"
+    dest: "{{ zsh_user_dir }}/.oh-my-zsh/custom/plugins/{{ item.name }}"
+    version: master
+  loop: "{{ custom_plugins }}"
+
+- name: Install powerline font
+  package:
+    name:
+      - "{{ package_font }}"
+    state: present
+  become: true
