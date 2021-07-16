@@ -1,0 +1,5 @@
+{% for module in modules %}
+Import-Module {{ module }}
+{% endfor %}
+Set-PoshPrompt -Theme {{ theme }}
+#https://docs.microsoft.com/en-us/windows/terminal/tutorials/powerline-setup

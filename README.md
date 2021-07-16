@@ -20,7 +20,7 @@ Here is the list playbook ans roles I use.
 | optimus-manager | ❌          |
 | tmux            | ❌          |
 | asdf            | ❌          |
-| powershell      | ❌          |
+| powershell      | ✔️          |
 | mutt            | ❌          |
 | utilitaries     | ❌          |
 | gui             | ❌          |

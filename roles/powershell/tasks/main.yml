@@ -1,0 +1,58 @@
+---
+# tasks file for powershell
+
+- name: Download and Add Powershell Key to Apt-Get Keyring
+  apt_key:
+    url: "https://packages.microsoft.com/keys/microsoft.asc"
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Add Powershell Repository into /etc/apt/sources.list - Ubuntu
+  apt_repository:
+    repo: 'deb [arch=amd64] https://packages.microsoft.com/ubuntu/20.04/prod focal main'
+    state: present
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Add Powershell Repository into /etc/apt/sources.list - Debian
+  apt_repository:
+    repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-buster-prod buster main"'
+    state: present
+  when: ansible_distribution == 'Debian'
+
+- name: Add repository - RedHat
+  yum_repository:
+    name: microsoft
+    description: packages-microsoft-com-prod
+    baseurl: "https://packages.microsoft.com/rhel/7/prod/"
+    gpgcheck: true
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    enabled: true
+  when: ansible_os_family == 'RedHat'
+
+- name: Install powershell
+  package:
+    name:
+      - powershell
+    state: present
+  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Debian'
+
+- name: Install powershell from AUR
+  community.general.pacman:
+    name: powershell-bin
+    state: present
+    executable: pacman
+  when: ansible_os_family == 'Archlinux'
+
+- name: Create powershell conf dir
+  file:
+    path: "{{ zsh_user_dir }}/.config/powershell/"
+    state: directory
+    mode: 0750
+
+- name: Copy conf
+  template:
+    src: Microsoft.PowerShell_profile.ps1.j2
+    dest: "{{ pwsh_user_dir }}/.config/powershell/Microsoft.PowerShell_profile.ps1"
+    owner: "{{ pwsh_user_id }}"
+    group: "{{ pwsh_user_group }}"
+    mode: 0640
