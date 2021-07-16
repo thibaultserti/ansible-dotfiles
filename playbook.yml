@@ -2,6 +2,12 @@
 - name: "Installation"
   hosts: all
   roles:
+    - role: "git"
+      vars:
+        git_name: Thibault Serti
+        git_email: "thibault.serti@gmail.com"
+        signingkey: "F2B6AEF1AA9B56B290C96AC07F9A9687E7CA0D86"
     - role: "zsh"
-      theme: agnoster
+      vars:
+        theme: agnoster
     - role: "bash"

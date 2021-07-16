@@ -9,12 +9,12 @@ Here is the list playbook ans roles I use.
 
 | Role name       | Advancement |
 | --------------- | ----------- |
-| zsh             | ✔️          |
+| zsh             | ✔️           |
 | bash            | 🔜          |
 | shell-common    | 🔜          |
 | docker          | ❌          |
 | vscode          | ❌          |
-| git             | ❌          |
+| git             | ✔️           |
 | gpg             | ❌          |
 | ssh             | ❌          |
 | optimus-manager | ❌          |
@@ -30,7 +30,6 @@ Here is the list playbook ans roles I use.
 |                 | ❌          |
 |                 | ❌          |
 |                 | ❌          |
-
 
 # Playbooks
 
