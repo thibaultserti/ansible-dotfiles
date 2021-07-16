@@ -134,7 +134,7 @@ source "$ZSH/oh-my-zsh.sh"
 
 echo -e ""
 echo -e "  ${COLOR_LIGHT_BLUE}Today  :${COLOR_NC}${COLOR_LIGHT_CYAN}       $(date)"
-if command -v lsb_release; then
+if command -v lsb_release > /dev/null 2>&1; then
     echo -e "  ${COLOR_LIGHT_BLUE}System :${COLOR_NC}${COLOR_LIGHT_CYAN}       $(lsb_release -i | cut -f 2 2> /dev/null)  - $(lsb_release -c | cut -f 2) - $(lsb_release -r | cut -f 2)"
 fi
 echo -e "  ${COLOR_LIGHT_BLUE}Kernel :${COLOR_NC}${COLOR_LIGHT_CYAN}       $(uname -o) $(uname -r) - $(uname -m)"

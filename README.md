@@ -31,8 +31,19 @@ Here is the list playbook ans roles I use.
 |                 | ❌          |
 |                 | ❌          |
 
-# Playbooks
+## Playbooks
 
 Execute with this
 
 `ansible-playbook -i hosts.ini --connection=local --ask-become-pass playbook.yml`
+
+
+## Dev
+
+Install:
+- `ansible`
+- `yamllint`
+- `ansible-lint`
+- `ansible-galaxy`
+
+Run `ansible-galaxy install -r requirements.txt`
