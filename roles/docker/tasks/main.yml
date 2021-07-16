@@ -1,0 +1,6 @@
+---
+# tasks file for docker
+
+- name: Install and configure docker
+  include_role:
+    name: geerlingguy.docker
