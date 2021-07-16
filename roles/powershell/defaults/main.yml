@@ -1,0 +1,13 @@
+---
+# defaults file for powershell
+
+pwsh_user_dir: "{{ ansible_user_dir }}"
+pwsh_user_id: "{{ ansible_user_id }}"
+pwsh_user_group: "{{ ansible_user_id }}"
+
+
+modules:
+  - oh-my-posh
+  - posh-git
+
+theme: paradox

@@ -7,6 +7,7 @@
       vars:
         theme: agnoster
     - role: "bash"
+    - role: "powershell"
     - role: "git"
       vars:
         git_name: Thibault Serti
