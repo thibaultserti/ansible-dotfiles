@@ -6,12 +6,21 @@ zsh_user_group: "{{ ansible_user_id }}"
 zsh_dir: .zsh
 
 plugins:
-  - alias-tips
   - encode64
   - sudo
   - web-search
   - z
-  - zsh-syntax-highlighting
-  - zsh-autosuggestions
+
+custom_plugins:
+  - name: alias-tips
+    url: https://github.com/djui/alias-tips
+  - name: autoupdate
+    url: https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
+  - name: zsh-syntax-highlighting
+    url: https://github.com/zsh-users/zsh-syntax-highlighting
+  - name: zsh-autosuggestions
+    url: https://github.com/zsh-users/zsh-autosuggestions
 
 theme: "agnoster"
+
+package_font: "{{ 'fonts-powerline' if ansible_os_family == 'Debian' else 'powerline-fonts' }}"
