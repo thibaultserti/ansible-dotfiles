@@ -1,0 +1,8 @@
+---
+# tasks file for git
+
+- include_tasks: install.yml
+  tags: [git, install]
+
+- include_tasks: configure.yml
+  tags: [git, configure]

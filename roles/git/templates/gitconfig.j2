@@ -1,0 +1,30 @@
+[user]
+    name = {{ git_name }}
+    email = {{ git_email }}
+    {% if signingkey is defined %}
+    signingkey = {{ signingkey }}
+    {% endif %}
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+[alias]
+    st = status
+    ci = commit
+    c = checkout
+    br = branch
+    g = grep
+    discard = checkout --
+[commit]
+    {% if signingkey is defined %}
+    gpgsign = true
+    {% endif %}
+[init]
+    defaultBranch = main
+[pull]
+    rebase = true
+[tag]
+    {% if signingkey is defined %}
+    gpgsign = true
+    {% endif %}

@@ -1,0 +1,8 @@
+---
+# defaults file for git
+user_dir: "{{ ansible_user_dir }}"
+user_id: "{{ ansible_user_id }}"
+user_group: "{{ ansible_user_id }}"
+
+git_name: ""
+git_email: ""
