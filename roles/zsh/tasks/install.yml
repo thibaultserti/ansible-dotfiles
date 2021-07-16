@@ -5,6 +5,8 @@
       - zsh
       - git
     state: present
+  become: true
+
 
 - name: Check for oh-my-zsh installation
   stat:
@@ -16,6 +18,7 @@
     name:
       - curl
     state: present
+  become: true
   when: not oh_my_zsh_stat.stat.exists
 
 - name: Install oh-my-zsh

@@ -11,7 +11,7 @@ driver:
 platforms:
   - name: instance
     dockerfile: Dockerfile.j2
-    image: "pycontribs/ubuntu:latest"
+    image: "archlinux/archlinux:latest"
 provisioner:
   name: ansible
   inventory:

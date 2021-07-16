@@ -4,3 +4,4 @@
     name:
       - bash
     state: present
+  become: true
