@@ -8,7 +8,8 @@
     mode: 0640
 
 - name: Check for zsh installation
-  stat: "path=~/.zsh"
+  stat:
+    path: ~/.zsh
   register: zsh_stat
 
 - name: Install zsh plugin
