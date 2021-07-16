@@ -1,0 +1,20 @@
+---
+
+- name: Update cache for Arch based distro
+  community.general.pacman:
+    update_cache: true
+  when: ansible_os_family == 'Archlinux'
+  become: true
+  changed_when: false
+
+- name: Update cache for Debian based distro
+  ansible.builtin.apt:
+    update_cache: true
+  when: ansible_os_family == 'Debian'
+  become: true
+
+- name: Update cache for RedHat based distro
+  ansible.builtin.yum:
+    update_cache: true
+  when: ansible_os_family == 'Redat'
+  become: true

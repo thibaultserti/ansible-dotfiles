@@ -1,6 +1,10 @@
 ---
 # tasks file for shell-common
 
+- include_tasks: archlinux.yml
+
+- include_tasks: cache.yml
+
 - name: Create {{ shell_dir }}
   file:
     path: "{{ shell_user_dir }}/{{ shell_dir }}/"

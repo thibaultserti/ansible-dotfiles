@@ -1,0 +1,37 @@
+---
+
+- name: Create aur_builder
+  user:
+    name: aur_builder
+    create_home: no
+    group: wheel
+    shell: /usr/bin/nologin
+    system: yes
+  become: true
+  when: ansible_os_family == 'Archlinux'
+
+
+- name: add ability to run pacman to aur_builder
+  lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    mode: 0440
+    create: yes
+    validate: 'visudo -cf %s'
+  become: true
+  when: ansible_os_family == 'Archlinux'
+
+
+- name: Install yay (ArchLinux)
+  raw: test -e /usr/bin/yay || (cd /tmp; git clone https://aur.archlinux.org/yay-bin.git; cd yay-bin; makepkg -sic --noconfirm)
+  become: true
+  become_user: aur_builder
+  changed_when: false
+  when: (ansible_lsb.id is not defined) and (ansible_distribution == 'Archlinux')
+
+- name: Install yay (Manjaro)
+  community.general.pacman:
+    name: yay
+    state: present
+  when: (ansible_lsb.id is  defined) and (ansible_lsb.id == 'ManjaroLinux')
+  become: true

@@ -25,9 +25,10 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        image:
+        scenario:
           - archlinux
-          - ubuntu
+          - fedora
+          - default
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -36,6 +37,5 @@ jobs:
       - name: molecule
         uses: robertdebock/molecule-action@2.6.17
         with:
-          image: "${{ matrix.image }}"
           options: parallel
-          scenario: default
+          scenario: "${{ matrix.scenario }}"

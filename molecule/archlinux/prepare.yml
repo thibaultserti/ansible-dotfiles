@@ -1,0 +1,25 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install sudo
+      raw: test -e /usr/bin/sudo || (pacman -Syu --noconfirm sudo)
+      changed_when: false
+
+    - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (pacman -Syu --noconfirm python)
+      become: true
+      changed_when: false
+
+    - name: Install usefull packages for testing
+      community.general.pacman:
+        name:
+          - git
+          - binutils
+          - make
+          - gcc
+          - pkg-config
+          - fakeroot
+        state: present
+      become: true

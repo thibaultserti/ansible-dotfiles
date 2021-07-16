@@ -5,18 +5,21 @@
   apt_key:
     url: "https://packages.microsoft.com/keys/microsoft.asc"
     state: present
+  become: true
   when: ansible_os_family == 'Debian'
 
 - name: Add Powershell Repository into /etc/apt/sources.list - Ubuntu
   apt_repository:
     repo: 'deb [arch=amd64] https://packages.microsoft.com/ubuntu/20.04/prod focal main'
     state: present
+  become: true
   when: ansible_distribution == 'Ubuntu'
 
 - name: Add Powershell Repository into /etc/apt/sources.list - Debian
   apt_repository:
     repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-buster-prod buster main"'
     state: present
+  become: true
   when: ansible_distribution == 'Debian'
 
 - name: Add repository - RedHat
@@ -27,6 +30,7 @@
     gpgcheck: true
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
     enabled: true
+  become: true
   when: ansible_os_family == 'RedHat'
 
 - name: Install powershell
@@ -34,13 +38,17 @@
     name:
       - powershell
     state: present
+  become: true
   when: ansible_os_family == 'RedHat' or ansible_os_family == 'Debian'
 
 - name: Install powershell from AUR
   community.general.pacman:
     name: powershell-bin
     state: present
-    executable: pacman
+    executable: yay
+    extra_args: --builddir /tmp
+  become: true
+  become_user: aur_builder
   when: ansible_os_family == 'Archlinux'
 
 - name: Create powershell conf dir
