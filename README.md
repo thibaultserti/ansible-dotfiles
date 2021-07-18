@@ -13,7 +13,7 @@ Here is the list playbook ans roles I use.
 | bash            | ✔️          |
 | shell-common    | ✔️          |
 | docker          | ✔️          |
-| vscode          | ❌          |
+| vscode          | ✔️          |
 | git             | ✔️          |
 | gpg             | ❌          |
 | ssh             | ❌          |
@@ -37,10 +37,10 @@ Execute with this
 
 `ansible-playbook -i hosts.ini --connection=local --ask-become-pass playbook.yml`
 
-
 ## Dev
 
 Install:
+
 - `ansible`
 - `yamllint`
 - `ansible-lint`
