@@ -1,0 +1,69 @@
+---
+# tasks file for vscode
+
+- name: Install snapd
+  package:
+    name: snapd
+    state: present
+  become: true
+
+- name: Install vscode and vscode-insiders
+  snap:
+    name:
+      - code
+      - code-insiders
+    classic: yes
+    state: present
+  become: true
+
+- name: Install vscode extensions
+  include_role:
+    name: gantsign.visual-studio-code-extensions
+  vars:
+    visual_studio_code_extensions_build: stable
+    users:
+      - username: "{{ vscode_user_id }}"
+        visual_studio_code_extensions: "{{ extensions }}"
+
+- name: Install vscode-insiders extensions
+  include_role:
+    name: gantsign.visual-studio-code-extensions
+  vars:
+    visual_studio_code_extensions_build: stable
+    users:
+      - username: "{{ vscode_user_id }}"
+        visual_studio_code_extensions: "{{ extensions }}"
+
+- name: Copy conf for vscode
+  template:
+    src: settings.json.j2
+    dest: "{{ vscode_user_dir }}/.config/Code/User/settings.json"
+    owner: "{{ vscode_user_id }}"
+    group: "{{ vscode_user_group }}"
+    mode: 0640
+
+- name: Copy conf for vscode-insiders
+  template:
+    src: settings.json.j2
+    dest: "{{ vscode_user_dir }}/.config/Code - Insiders/User/settings.json"
+    owner: "{{ vscode_user_id }}"
+    group: "{{ vscode_user_group }}"
+    mode: 0640
+
+- name: Create .fonts
+  file:
+    path: "{{ zsh_user_dir }}/.fonts"
+    state: directory
+    mode: 0750
+
+- name: Copy powerline font
+  copy:
+    src: "Menlo for Powerline.ttf"
+    dest: "{{ vscode_user_dir }}/.fonts/Menlo for Powerline.ttf"
+    owner: "{{ zsh_user_id }}"
+    group: "{{ zsh_user_group }}"
+    mode: 0640
+
+- name: Refresh font-cache
+  command: "fc-cache -vf {{ vscode_user_dir }}/.fonts"
+  changed_when: false

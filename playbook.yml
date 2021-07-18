@@ -23,3 +23,6 @@
           - "{{ ansible_user_id }}"
       tags:
         - notest
+    - role: "vscode"
+      tags:
+        - notest
