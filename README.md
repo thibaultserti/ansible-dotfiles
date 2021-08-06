@@ -15,21 +15,18 @@ Here is the list playbook ans roles I use.
 | docker          | ✔️          |
 | vscode          | ✔️          |
 | git             | ✔️          |
+| powershell      | ✔️          |
 | gpg             | ❌          |
 | ssh             | ❌          |
 | optimus-manager | ❌          |
 | tmux            | ❌          |
 | asdf            | ❌          |
-| powershell      | ✔️          |
 | mutt            | ❌          |
 | utilitaries     | ❌          |
 | gui             | ❌          |
 | vim             | ❌          |
-|                 | ❌          |
-|                 | ❌          |
-|                 | ❌          |
-|                 | ❌          |
-|                 | ❌          |
+| firefox         | ❌          |
+
 
 ## Playbooks
 
