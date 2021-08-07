@@ -1,0 +1,105 @@
+---
+- name: "Installation"
+  hosts: all
+
+  roles:
+    # ZSH
+    - role: "zsh"
+      vars:
+        theme: agnoster
+        plugins:
+          - encode64
+          - sudo
+          - web-search
+          - z
+        custom_plugins:
+          - name: alias-tips
+            url: https://github.com/djui/alias-tips
+          - name: autoupdate
+            url: https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
+          - name: zsh-syntax-highlighting
+            url: https://github.com/zsh-users/zsh-syntax-highlighting
+          - name: zsh-autosuggestions
+            url: https://github.com/zsh-users/zsh-autosuggestions
+    # BASH
+    - role: "bash"
+    # POWERSHELL
+    - role: "powershell"
+      vars:
+        modules:
+          - oh-my-posh
+          - posh-git
+        theme: paradox
+    # GIT
+    - role: "git"
+      vars:
+        git_name: Thibault Serti
+        git_email: "thibault.serti@gmail.com"
+        signingkey: "F2B6AEF1AA9B56B290C96AC07F9A9687E7CA0D86"
+    # Docker
+    - role: "docker"
+      become: true
+      tags:
+        - notest
+      vars:
+        docker_service_enabled: false
+        docker_install_compose: false
+        docker_users:
+          - "{{ ansible_user_id }}"
+    # Vscode
+    - role: "vscode"
+      tags:
+        - notest
+      vars:
+        extensions:
+          # themes and icons
+          - PKief.material-icon-theme
+          - Perkovec.emoji
+          # utils
+          - CoenraadS.bracket-pair-colorizer
+          - GrapeCity.gc-excelviewer
+          - tomoki1207.pdf
+          - evilz.vscode-reveal
+          - icrawl.discord-vscode
+          - ms-vsliveshare.vsliveshare
+          - ms-vsliveshare.vsliveshare-audio
+          # Javascript and Typescript
+          - dbaeumer.vscode-eslint
+          - esbenp.prettier-vscode
+          # Golang
+          - golang.go
+          # Git & Github
+          - donjayamanne.githistory
+          - eamodio.gitlens
+          - GitHub.vscode-pull-request-github
+          # Python
+          - ms-python.python
+          - ms-python.vscode-pylance
+          - ms-toolsai.jupyter
+          - njpwerner.autodocstring
+          # Docker
+          - ms-vscode-remote.remote-containers
+          - ms-azuretools.vscode-docker
+          # Bash
+          - timonwong.shellcheck
+          - foxundermoon.shell-format
+          # C/C++
+          - ms-vscode.cpptools
+          # Powershell
+          - ms-vscode.powershell
+          # BDD SQL
+          - mtxr.sqltools
+          - mtxr.sqltools-driver-sqlite
+          # Java
+          - redhat.java
+          # YAML, JSON, XML
+          - redhat.vscode-commons
+          - redhat.vscode-xml
+          - redhat.vscode-yaml
+          - samuelcolvin.jinjahtml
+          # Ansible
+          - zbr.vscode-ansible
+          # Kubernetes
+          - ms-kubernetes-tools.vscode-kubernetes-tools
+          # Terraform
+          - hashicorp.terraform

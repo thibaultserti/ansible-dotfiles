@@ -1,3 +1,5 @@
+# THIS FILE IS MANAGED BY ANSIBLE, DO NOT EDIT MANUALLY
+
 # shellcheck shell=bash
 
 # Global aliases
