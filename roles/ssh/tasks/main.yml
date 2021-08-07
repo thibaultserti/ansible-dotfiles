@@ -1,0 +1,59 @@
+---
+# tasks file for ssh
+
+- name: Install openssh (ArchLinux)
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ packages_arch }}"
+  when: ansible_os_family == 'Archlinux'
+
+- name: Install openssh
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ packages }}"
+  when: ansible_os_family != 'Archlinux'
+
+
+- name: Install mosh
+  package:
+    name:
+      - mosh
+    state: present
+  become: true
+
+- name: Ensure .ssh directory exists.
+  file:
+    dest: "{{ ssh_user_dir }}/{{ ssh_dir }}"
+    owner: "{{ ssh_user_id }}"
+    group: "{{ ssh_user_group }}"
+    mode: 0700
+    state: directory
+
+- name: Set authorized key taken from file
+  ansible.posix.authorized_key:
+    user: "{{ ssh_user_id }}"
+    state: present
+    key: "{{ lookup('file', 'id_rsa.pub') }}"
+    path: "{{ ssh_user_dir }}/{{ ssh_dir }}/authorized_keys"
+
+- name: Copy public key
+  copy:
+    src: id_rsa.pub
+    dest: "{{ ssh_user_dir }}/{{ ssh_dir }}/id_rsa.pub"
+    owner: "{{ ssh_user_id }}"
+    group: "{{ ssh_user_group }}"
+    mode: 0640
+  when: copy_keys is true
+
+- name: Copy private key
+  copy:
+    src: id_rsa
+    dest: "{{ ssh_user_dir }}/{{ ssh_dir }}/id_rsa"
+    owner: "{{ ssh_user_id }}"
+    group: "{{ ssh_user_group }}"
+    mode: 0600
+  when: copy_keys is true

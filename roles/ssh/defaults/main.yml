@@ -1,0 +1,17 @@
+---
+# defaults file for ssh
+
+ssh_user_dir: "{{ ansible_user_dir }}"
+ssh_user_id: "{{ ansible_user_id }}"
+ssh_user_group: "{{ ansible_user_id }}"
+
+ssh_dir: .ssh
+
+copy_keys: false
+
+packages:
+  - openssh-server
+  - openssh-client
+
+packages_arch:
+  - openssh
