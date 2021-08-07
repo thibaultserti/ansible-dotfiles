@@ -1,3 +1,5 @@
+# THIS FILE IS MANAGED BY ANSIBLE, DO NOT EDIT MANUALLY
+
 # shellcheck shell=bash
 
 function display-rsa() { openssl rsa -noout -text -inform PEM -in "$1" -pubin -modulusi; }
