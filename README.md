@@ -16,26 +16,30 @@ Here is the list playbook ans roles I use.
 | vscode          | ✔️          |
 | git             | ✔️          |
 | powershell      | ✔️          |
+| ssh             | ✔️          |
 | gpg             | ❌          |
-| ssh             | ❌          |
-| optimus-manager | ❌          |
-| tmux            | ❌          |
-| asdf            | ❌          |
 | mutt            | ❌          |
 | utilitaries     | ❌          |
+| tmux            | ❌          |
+| asdf            | ❌          |
 | gui             | ❌          |
 | vim             | ❌          |
 | firefox         | ❌          |
-
+| optimus-manager | ❌          |
 
 ## Playbooks
 
-Execute with this
+### Command for laptop
 
-`ansible-playbook -i hosts.ini --connection=local --ask-become-pass playbook.yml`
+`ansible-playbook -i hosts.ini --connection=local --ask-become-pass --ask-vault-pass playbook_laptop.yml`
+
+### Command for servers/VM
+
+`ansible-playbook -i hosts.ini --connection=local --ask-become-pass --ask-vault-pass playbook_server.yml`
 
 ## Dev
 
+### Linting
 Install:
 
 - `ansible`
@@ -43,4 +47,10 @@ Install:
 - `ansible-lint`
 - `ansible-galaxy`
 
+### Modules requirements
+
 Run `ansible-galaxy install -r requirements.txt`
+
+### Testing
+
+- `molecule`
