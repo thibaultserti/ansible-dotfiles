@@ -17,8 +17,8 @@ Here is the list playbook ans roles I use.
 | git             | ✔️          |
 | powershell      | ✔️          |
 | ssh             | ✔️          |
-| gpg             | ❌          |
-| mutt            | ❌          |
+| gpg             | ✔️          |
+| mutt            | ✔️          |
 | utilitaries     | ❌          |
 | tmux            | ❌          |
 | asdf            | ❌          |
@@ -40,6 +40,7 @@ Here is the list playbook ans roles I use.
 ## Dev
 
 ### Linting
+
 Install:
 
 - `ansible`
