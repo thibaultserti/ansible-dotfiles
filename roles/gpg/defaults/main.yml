@@ -1,0 +1,17 @@
+---
+# defaults file for gpg
+
+
+gpg_user_dir: "{{ ansible_user_dir }}"
+gpg_user_id: "{{ ansible_user_id }}"
+gpg_user_group: "{{ ansible_user_id }}"
+
+gpg_dir: .gnupg
+
+default_key: ""
+
+packages:
+  - gnupg2
+
+packages_arch:
+  - gnupg
