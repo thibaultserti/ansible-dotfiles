@@ -1,0 +1,87 @@
+---
+# tasks file for gpg
+
+- name: Install gpg (ArchLinux)
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ packages_arch }}"
+  when: ansible_os_family == 'Archlinux'
+
+- name: Install gpg
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ packages }}"
+  when: ansible_os_family != 'Archlinux'
+
+
+- name: Ensure .gnupg directory exists.
+  file:
+    dest: "{{ gpg_user_dir }}/{{ gpg_dir }}"
+    owner: "{{ gpg_user_id }}"
+    group: "{{ gpg_user_group }}"
+    mode: 0700
+    state: directory
+
+- name: Copy gnupg conf
+  template:
+    src: gnupg.conf.j2
+    dest: "{{ gpg_user_dir }}/{{ gpg_dir }}/gnupg.conf"
+    owner: "{{ gpg_user_id }}"
+    group: "{{ gpg_user_group }}"
+    mode: 0640
+
+- name: Copy public key
+  copy:
+    src: public.key
+    dest: "{{ gpg_user_dir }}/public.key"
+    owner: "{{ gpg_user_id }}"
+    group: "{{ gpg_user_group }}"
+    mode: 0640
+  changed_when: false
+
+- name: Copy private key
+  copy:
+    src: private.key
+    dest: "{{ gpg_user_dir }}/private.key"
+    owner: "{{ gpg_user_id }}"
+    group: "{{ gpg_user_group }}"
+    mode: 0600
+  changed_when: false
+
+- name: Copy trustdb
+  copy:
+    src: trustdb.gpg
+    dest: "{{ gpg_user_dir }}/trustdb.gpg"
+    owner: "{{ gpg_user_id }}"
+    group: "{{ gpg_user_group }}"
+    mode: 0600
+  changed_when: false
+
+- name: Import public key
+  command: "gpg --import {{ gpg_user_dir }}/public.key"
+  register: output
+  changed_when: "'imported' in output"
+
+- name: Import private key
+  command: "gpg --import {{ gpg_user_dir }}/private.key"
+  register: output
+  changed_when: "'imported' in output"
+
+- name: Update trustdb
+  command: "gpg --import-ownertrust {{ gpg_user_dir }}/trustdb.gpg"
+  register: output
+  changed_when: "'inserting' in output"
+
+- name: Clean keys
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "{{ gpg_user_dir }}/public.key"
+    - "{{ gpg_user_dir }}/private.key"
+    - "{{ gpg_user_dir }}/trustdb.gpg"
+  changed_when: false

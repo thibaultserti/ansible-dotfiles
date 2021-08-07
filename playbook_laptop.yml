@@ -30,6 +30,12 @@
           - oh-my-posh
           - posh-git
         theme: paradox
+    # GPG
+    - role: "gpg"
+      tags:
+        - notest
+      vars:
+        default_key: "F2B6AEF1AA9B56B290C96AC07F9A9687E7CA0D86"
     # GIT
     - role: "git"
       vars:
