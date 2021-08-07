@@ -1,0 +1,39 @@
+---
+# tasks file for neomutt
+
+- name: Install neomutt
+  package:
+    name:
+    - neomutt
+    state: present
+  become: true
+
+- name: Install conf
+  template:
+    src: neomuttrc.j2
+    dest: "{{ neomutt_user_dir }}/.neomuttrc"
+    owner: "{{ neomutt_user_id }}"
+    group: "{{ neomutt_user_group }}"
+    mode: 0600
+
+- name: Create .neomutt dir
+  file:
+    path: "{{ neomutt_user_dir }}/{{ neomutt_dir }}"
+    state: directory
+    mode: 0750
+
+- name: Create .neomutt cache dir
+  file:
+    path: "{{ neomutt_user_dir }}/.cache/neomutt/bodies"
+    state: directory
+    mode: 0750
+    recurse: yes
+
+- name: Install account conf
+  template:
+    src: account.j2
+    dest: "{{ neomutt_user_dir }}/{{ neomutt_dir }}/accounts/account-{{ item.user }}"
+    owner: "{{ neomutt_user_id }}"
+    group: "{{ neomutt_user_group }}"
+    mode: 0600
+  loop: "{{ accounts }}"

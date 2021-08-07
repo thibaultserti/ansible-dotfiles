@@ -1,0 +1,19 @@
+# THIS FILE IS MANAGED BY ANSIBLE, DO NOT EDIT MANUALLY
+
+set from = "{{ item.name }}"
+set folder = "imaps://imap.gmail.com"
+
+# Imap
+set imap_user = "{{ item.user }}"
+set imap_pass = "{{ item.password }}"
+set spoolfile = "+INBOX"
+set header_cache=~/.cache/neomutt/headers
+set message_cachedir = "~/.cache/neomutt/bodies"
+
+# Mailbox definition
+mailboxes "=INBOX"
+
+# smtp
+set smtp_url = "smtp://{{ item.user }}@smtp.gmail.com:587/"
+set realname = "{{ item.name }}"
+set smtp_pass = "{{ item.password }}"
