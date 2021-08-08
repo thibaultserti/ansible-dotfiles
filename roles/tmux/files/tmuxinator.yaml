@@ -1,0 +1,44 @@
+# THIS FILE IS MANAGED BY ANSIBLE, DO NOT EDIT MANUALLY
+
+name: default
+root: ~/
+windows:
+  - default:
+      layout: eb6a,211x47,0,0{105x47,0,0,35,105x47,106,0,45}
+      panes:
+        - clear; neofetch
+        - clear
+  - default:
+      layout: 1c9c,211x47,0,0{105x47,0,0,36,105x47,106,0[105x23,106,0,46,105x23,106,24,47]}
+      panes:
+        - clear; neofetch
+        -
+        -
+  - download:
+      layout: 63e8,211x47,0,0,38
+      panes:
+        - clear; cd Downloads/
+  - programmation:
+      layout: 63e9,211x47,0,0,39
+      panes:
+        - clear; cd Programmation/
+  - ranger:
+      layout: e3e1,211x47,0,0,41
+      panes:
+        - ranger
+  - python3:
+      layout: e3e2,211x47,0,0,42
+      panes:
+        - clear; ipython -i
+  - htop:
+      layout: e3e3,211x47,0,0,43
+      panes:
+        - htop
+  - monitoring:
+      layout: e3e4,211x47,0,0,44
+      panes:
+        - s-tui
+  - cointop:
+      layout: e3e5,211x47,0,0,45
+      panes:
+        - cointop --colorscheme transparent

@@ -1,0 +1,58 @@
+---
+# tasks file for tmux
+
+- name: Install tmux
+  package:
+    name:
+      - tmux
+    state: present
+  become: true
+
+- name: Install tmuxinator (Ubuntu)
+  package:
+    name:
+      - tmux
+    state: present
+  become: true
+  when: ansible_os_family == 'Debian'
+
+- name: Install tmuxinator (Archlinux)
+  community.general.pacman:
+    name: tmuxinator
+    state: present
+    executable: yay
+    extra_args: --builddir /tmp
+  become: true
+  become_user: aur_builder
+  when: ansible_os_family == 'Archlinux'
+
+
+- name: Copy tmux global conf
+  copy:
+    src: tmux.conf
+    dest: "{{ tmux_user_dir }}/.tmux.conf"
+    owner: "{{ tmux_user_id }}"
+    group: "{{ tmux_user_group }}"
+    mode: 0640
+
+- name: Copy tmux local conf
+  copy:
+    src: tmux.local.conf
+    dest: "{{ tmux_user_dir }}/.tmux.local.conf"
+    owner: "{{ tmux_user_id }}"
+    group: "{{ tmux_user_group }}"
+    mode: 0640
+
+- name: Create .tmuxinator
+  file:
+    path: "{{ zsh_user_dir }}/.tmuxinator"
+    state: directory
+    mode: 0750
+
+- name: Copy tmuxinator
+  copy:
+    src: tmuxinator.yaml
+    dest: "{{ tmux_user_dir }}/.tmuxinator/default.yml"
+    owner: "{{ tmux_user_id }}"
+    group: "{{ tmux_user_group }}"
+    mode: 0640

@@ -7,25 +7,23 @@ Each functionnality is managed by one role.
 
 Here is the list playbook ans roles I use.
 
-| Role name       | Advancement |
-| --------------- | ----------- |
-| zsh             | ✔️          |
-| bash            | ✔️          |
-| shell-common    | ✔️          |
-| docker          | ✔️          |
-| vscode          | ✔️          |
-| git             | ✔️          |
-| powershell      | ✔️          |
-| ssh             | ✔️          |
-| gpg             | ✔️          |
-| mutt            | ✔️          |
-| utilitaries     | ✔️          |
-| tmux            | ❌          |
-| asdf            | ❌          |
-| gui             | ✔️          |
-| vim             | ❌          |
-| firefox         | ❌          |
-| optimus-manager | ❌          |
+| Role name    | Advancement |
+| ------------ | ----------- |
+| zsh          | ✔️          |
+| bash         | ✔️          |
+| shell-common | ✔️          |
+| docker       | ✔️          |
+| vscode       | ✔️          |
+| git          | ✔️          |
+| powershell   | ✔️          |
+| ssh          | ✔️          |
+| gpg          | ✔️          |
+| mutt         | ✔️          |
+| utilitaries  | ✔️          |
+| tmux         | ✔️          |
+| asdf         | ❌          |
+| gui          | ✔️          |
+| vim          | ❌          |
 
 ## Playbooks
 
