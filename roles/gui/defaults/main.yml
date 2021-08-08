@@ -1,0 +1,24 @@
+---
+# defaults file for gui
+
+packages:
+  - audacity
+  - cpupower-gui
+  - filezilla
+  - firefox
+  - mpv
+  - qbittorrent
+  - seahorse
+  - terminator
+  - thunderbird
+  - timeshift
+  - vagrant
+  - virtualbox
+  - vlc
+
+snap:
+  - bitwarden
+  - brave
+  - discord
+  - slack
+  - skype

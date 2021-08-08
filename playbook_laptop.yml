@@ -25,6 +25,8 @@
     - role: "bash"
     # UTILITIES
     - role: "utilities"
+      tags:
+        - notest
     # POWERSHELL
     - role: "powershell"
       vars:
@@ -63,6 +65,10 @@
         copy_keys: true
     # MUTT
     - role: "neomutt"
+      tags:
+        - notest
+    # GUI
+    - role: "gui"
       tags:
         - notest
     # VSCODE
