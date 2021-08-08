@@ -1,0 +1,33 @@
+---
+# tasks file for utilities
+
+- name: Install mutliple packages
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ packages }}"
+
+- name: Install snapd
+  package:
+    name: snapd
+    state: present
+  become: true
+
+- name: Install snap packages
+  snap:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ snap }}"
+
+- name: Install Archlinux specific AUR
+  community.general.pacman:
+    name: "{{ item }}"
+    state: present
+    executable: yay
+    extra_args: --builddir /tmp
+  become: true
+  become_user: aur_builder
+  when: ansible_os_family == 'Archlinux'
+  loop: "{{ archlinux }}"
