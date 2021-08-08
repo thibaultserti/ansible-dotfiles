@@ -8,12 +8,17 @@ packages:
   - jq
   - kdeconnect
   - less
+  - lsb-release
   - ncdu
   - neofetch
   - net-tools
   - nmap
   - os-prober
+  - powertop
+  - prettyping
   - pwgen
+  - ranger
+  - smartmontools
   - time
   - tldr
   - traceroute
@@ -27,6 +32,3 @@ packages:
 archlinux:
   - nerd-fonts-noto-sans-mono
   - noto-fonts-emoji
-
-snap:
-  - bitwarden

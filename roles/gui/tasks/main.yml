@@ -1,0 +1,22 @@
+---
+# tasks file for gui
+
+- name: Install mutliple packages
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ packages }}"
+
+- name: Install snapd
+  package:
+    name: snapd
+    state: present
+  become: true
+
+- name: Install snap packages
+  snap:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ snap }}"

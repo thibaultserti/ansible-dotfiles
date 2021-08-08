@@ -22,7 +22,7 @@ Here is the list playbook ans roles I use.
 | utilitaries     | ✔️          |
 | tmux            | ❌          |
 | asdf            | ❌          |
-| gui             | ❌          |
+| gui             | ✔️          |
 | vim             | ❌          |
 | firefox         | ❌          |
 | optimus-manager | ❌          |
