@@ -7,6 +7,7 @@
     group: wheel
     shell: /usr/bin/nologin
     system: yes
+    home: /tmp
   become: true
   when: ansible_os_family == 'Archlinux'
 

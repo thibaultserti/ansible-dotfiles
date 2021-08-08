@@ -19,7 +19,7 @@ Here is the list playbook ans roles I use.
 | ssh             | ✔️          |
 | gpg             | ✔️          |
 | mutt            | ✔️          |
-| utilitaries     | ❌          |
+| utilitaries     | ✔️          |
 | tmux            | ❌          |
 | asdf            | ❌          |
 | gui             | ❌          |

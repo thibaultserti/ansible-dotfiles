@@ -1,0 +1,32 @@
+---
+# defaults file for utilities
+
+packages:
+  - bat
+  - htop
+  - inxi
+  - jq
+  - kdeconnect
+  - less
+  - ncdu
+  - neofetch
+  - net-tools
+  - nmap
+  - os-prober
+  - pwgen
+  - time
+  - tldr
+  - traceroute
+  - tree
+  - wget
+  - which
+  - whois
+  - xclip
+  - youtube-dl
+
+archlinux:
+  - nerd-fonts-noto-sans-mono
+  - noto-fonts-emoji
+
+snap:
+  - bitwarden

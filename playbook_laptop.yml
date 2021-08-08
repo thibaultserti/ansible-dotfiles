@@ -3,10 +3,6 @@
   hosts: all
 
   roles:
-     # MUTT
-    - role: "neomutt"
-      tags:
-        - notest
     # ZSH
     - role: "zsh"
       vars:
@@ -27,6 +23,8 @@
             url: https://github.com/zsh-users/zsh-autosuggestions
     # BASH
     - role: "bash"
+    # UTILITIES
+    - role: "utilities"
     # POWERSHELL
     - role: "powershell"
       vars:
@@ -63,7 +61,10 @@
         - notest
       vars:
         copy_keys: true
-
+    # MUTT
+    - role: "neomutt"
+      tags:
+        - notest
     # VSCODE
     - role: "vscode"
       tags:
