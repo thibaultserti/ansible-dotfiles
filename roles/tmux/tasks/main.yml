@@ -16,6 +16,14 @@
   become: true
   when: ansible_os_family == 'Debian'
 
+- name: Install ruby (Archlinux)
+  package:
+    name:
+      - ruby
+    state: present
+  become: true
+  when: ansible_os_family == 'Archlinux'
+
 - name: Install tmuxinator (Archlinux)
   community.general.pacman:
     name: tmuxinator
@@ -25,7 +33,6 @@
   become: true
   become_user: aur_builder
   when: ansible_os_family == 'Archlinux'
-
 
 - name: Copy tmux global conf
   copy:
