@@ -20,6 +20,7 @@
   package:
     name:
       - ruby
+      - patch
     state: present
   become: true
   when: ansible_os_family == 'Archlinux'
