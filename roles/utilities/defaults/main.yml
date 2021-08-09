@@ -28,7 +28,3 @@ packages:
   - whois
   - xclip
   - youtube-dl
-
-archlinux:
-  - nerd-fonts-noto-sans-mono
-  - noto-fonts-emoji

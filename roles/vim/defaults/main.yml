@@ -1,0 +1,6 @@
+---
+# defaults file for vim
+
+vim_user_dir: "{{ ansible_user_dir }}"
+vim_user_id: "{{ ansible_user_id }}"
+vim_user_group: "{{ ansible_user_id }}"

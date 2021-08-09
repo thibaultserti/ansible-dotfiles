@@ -1,8 +1,8 @@
 galaxy_info:
   author: Thibault Ayanides
-  description: Install vscode
+  description: Install vim
   company: Thibault Ayanides
-  role_name: vscode
+  role_name: vim
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -36,12 +36,6 @@ galaxy_info:
       versions:
         - any
 
-  # - name: SomePlatform
-  #   versions:
-  #   - all
-  #   - 1.0
-  #   - 7
-  #   - 99.99
 
   galaxy_tags: []
     # List tags for your role here, one per line. A tag is a keyword that describes

@@ -7,14 +7,3 @@
     state: present
   become: true
   loop: "{{ packages }}"
-
-- name: Install Archlinux specific AUR
-  community.general.pacman:
-    name: "{{ item }}"
-    state: present
-    executable: yay
-    extra_args: --builddir /tmp
-  become: true
-  become_user: aur_builder
-  when: ansible_os_family == 'Archlinux'
-  loop: "{{ archlinux }}"

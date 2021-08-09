@@ -1,0 +1,100 @@
+---
+# tasks file for vim
+
+- name: Install prequisites (Archlinux)
+  package:
+    name:
+      - python
+      - python-pip
+      - python-virtualenv
+      - which
+    state: present
+  become: true
+  when: ansible_os_family == 'Archlinux'
+
+- name: Install prequisites (Debian)
+  package:
+    name:
+      - python3
+      - python3-pip
+      - python3-venv
+    state: present
+  become: true
+  when: ansible_os_family == 'Debian'
+
+- name: Install prequisites (Fedora)
+  package:
+    name:
+      - python3
+      - python3-pip
+      - python3-virtualenv
+      - which
+    state: present
+  become: true
+  when: ansible_os_family == 'RedHat'
+
+- name: Install vim
+  package:
+    name:
+      - vim
+    state: present
+  become: true
+
+- name: Add neovim repository (Debian/Ubuntu)
+  ansible.builtin.apt_repository:
+    repo: ppa:neovim-ppa/unstable
+  become: true
+  when: ansible_os_family == 'Debian'
+
+- name: Update cache for Debian based distro
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+  when: ansible_os_family == 'Debian'
+
+- name: Install neovim
+  package:
+    name:
+      - neovim
+    state: present
+  become: true
+
+- name: Create .config custom dir
+  file:
+    path: "{{ vim_user_dir }}/.config"
+    state: directory
+    mode: 0750
+
+- name: Install vim config from github
+  ansible.builtin.git:
+    repo: "https://github.com/rafi/vim-config.git"
+    dest: "{{ vim_user_dir }}/.config/nvim"
+    version: master
+
+- name: Create symlink
+  file:
+    src: "{{ vim_user_dir }}/.config/nvim"
+    dest: "{{ vim_user_dir }}/.vim"
+    owner: "{{ vim_user_id }}"
+    group: "{{ vim_user_group }}"
+    state: link
+
+- name: Install python modules
+  pip:
+    name:
+      - pynvim
+      - PyYAML
+      - vim-vint
+      - pycodestyle
+      - pyflakes
+      - flake8
+    executable: pip3
+    extra_args: --user
+    state: forcereinstall
+  changed_when: false
+
+- name: Install plugins
+  community.general.make:
+    chdir: "{{ vim_user_dir }}/.config/nvim"
+    target: install
+  changed_when: false
