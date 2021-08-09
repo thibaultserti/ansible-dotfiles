@@ -67,6 +67,8 @@
     - role: "neomutt"
       tags:
         - notest
+    # TMUX
+    - role: "tmux"
     # GUI
     - role: "gui"
       tags:
