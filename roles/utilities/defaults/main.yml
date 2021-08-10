@@ -24,7 +24,6 @@ packages:
   - traceroute
   - tree
   - wget
-  - which
   - whois
   - xclip
   - youtube-dl

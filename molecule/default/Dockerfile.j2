@@ -3,6 +3,7 @@ FROM {{ item.image }}
 # Create `ansible` user with sudo permissions and membership in `DEPLOY_GROUP`
 ENV ANSIBLE_USER=ansible SUDO_GROUP=sudo DEPLOY_GROUP=deployer
 RUN set -xe \
+  && apt update && apt install sudo \
   && groupadd -r ${ANSIBLE_USER} \
   && groupadd -r ${DEPLOY_GROUP} \
   && useradd -m -g ${ANSIBLE_USER} ${ANSIBLE_USER} \

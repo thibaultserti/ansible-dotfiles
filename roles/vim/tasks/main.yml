@@ -29,6 +29,7 @@
       - python3-pip
       - python3-virtualenv
       - which
+      - python3-pyyaml
     state: present
   become: true
   when: ansible_os_family == 'RedHat'
