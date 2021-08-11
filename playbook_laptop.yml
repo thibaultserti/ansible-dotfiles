@@ -69,6 +69,8 @@
         - notest
     # TMUX
     - role: "tmux"
+    # VIM
+    - role: "vim"
     # GUI
     - role: "gui"
       tags:

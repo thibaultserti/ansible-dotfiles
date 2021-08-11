@@ -4,11 +4,11 @@
   gather_facts: false
   tasks:
     - name: Install sudo
-      raw: test -e /usr/bin/sudo || (pacman -Syu --noconfirm sudo)
+      raw: test -e /usr/bin/sudo || (yum -y install sudo)
       changed_when: false
 
     - name: Install python for Ansible
-      raw: test -e /usr/bin/python || (pacman -Syu --noconfirm python)
+      raw: test -e /usr/bin/python || (yum -y install python3)
       become: true
       changed_when: false
 

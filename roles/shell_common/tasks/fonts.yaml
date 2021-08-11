@@ -1,0 +1,28 @@
+- name: Install fonts (Archlinux)
+  community.general.pacman:
+    name:
+      - nerd-fonts-noto-sans-mono
+      - noto-fonts-emoji
+      - nerd-fonts-fira-code
+    state: present
+    executable: yay
+    extra_args: --builddir /tmp
+  become: true
+  become_user: aur_builder
+  when: ansible_os_family == 'Archlinux'
+
+- name: Install fonts (Debian)
+  package:
+    name:
+      - fonts-firacode
+    state: present
+  become: true
+  when: ansible_os_family == 'Archlinux'
+
+- name: Install fonts (Fedora)
+  package:
+    name:
+      - fira-code-fonts
+    state: present
+  become: true
+  when: ansible_os_family == 'RedHat'

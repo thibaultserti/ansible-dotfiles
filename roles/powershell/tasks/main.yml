@@ -1,6 +1,14 @@
 ---
 # tasks file for powershell
 
+- name: Add gpg
+  package:
+    name:
+      - gnupg
+    state: present
+  become: true
+  when: ansible_os_family == 'Debian'
+
 - name: Download and Add Powershell Key to Apt-Get Keyring
   apt_key:
     url: "https://packages.microsoft.com/keys/microsoft.asc"

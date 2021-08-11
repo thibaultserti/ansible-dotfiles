@@ -3,12 +3,18 @@
   hosts: all
   gather_facts: false
   tasks:
+    - name: Update cache
+      raw: apt update
+      changed_when: false
+      become: true
+      
     - name: Install sudo
-      raw: test -e /usr/bin/sudo || (pacman -Syu --noconfirm sudo)
+      raw: test -e /usr/bin/sudo || (apt install -y sudo)
+      become: true
       changed_when: false
 
     - name: Install python for Ansible
-      raw: test -e /usr/bin/python || (pacman -Syu --noconfirm python)
+      raw: test -e /usr/bin/python3 || (apt install -y python3)
       become: true
       changed_when: false
 
