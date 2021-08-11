@@ -63,8 +63,6 @@
         - notest
       vars:
         copy_keys: true
-    # ASDF
-    - role: "asdf"
     # MUTT
     - role: "neomutt"
       tags:
@@ -73,6 +71,8 @@
     - role: "tmux"
     # VIM
     - role: "vim"
+    # ASDF
+    - role: "asdf"
     # GUI
     - role: "gui"
       tags:

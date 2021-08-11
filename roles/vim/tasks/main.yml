@@ -82,3 +82,19 @@
     chdir: "{{ vim_user_dir }}/.config/nvim"
     target: install
   changed_when: false
+
+- name: Copy vimrc
+  copy:
+    src: vimrc.vim
+    dest: "{{ vim_user_dir }}/.vimrc"
+    owner: "{{ vim_user_id }}"
+    group: "{{ vim_user_group }}"
+    mode: 0640
+
+- name: Copy local vim
+  copy:
+    src: local.vim
+    dest: "{{ vim_user_dir }}/.config/nvim/config/local.vim"
+    owner: "{{ vim_user_id }}"
+    group: "{{ vim_user_group }}"
+    mode: 0640
