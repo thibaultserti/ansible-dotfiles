@@ -34,32 +34,14 @@
   become: true
   when: ansible_os_family == 'RedHat'
 
-- name: Install vim
+- name: Install vim and neovil
   package:
     name:
       - vim
-    state: present
-  become: true
-
-- name: Add neovim repository (Debian/Ubuntu)
-  ansible.builtin.apt_repository:
-    repo: ppa:neovim-ppa/unstable
-  become: true
-  when: ansible_os_family == 'Debian'
-
-- name: Update cache for Debian based distro
-  ansible.builtin.apt:
-    update_cache: true
-  become: true
-  when: ansible_os_family == 'Debian'
-
-- name: Install neovim
-  package:
-    name:
       - neovim
     state: present
   become: true
-
+  
 - name: Create .config custom dir
   file:
     path: "{{ vim_user_dir }}/.config"
