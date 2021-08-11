@@ -5,10 +5,12 @@
   tasks:
     - name: Update cache
       raw: apt update
-
       changed_when: false
+      become: true
+      
     - name: Install sudo
       raw: test -e /usr/bin/sudo || (apt install -y sudo)
+      become: true
       changed_when: false
 
     - name: Install python for Ansible
