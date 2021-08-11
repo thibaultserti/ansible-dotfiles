@@ -21,9 +21,9 @@ Here is the list playbook ans roles I use.
 | mutt         | ✔️          |
 | utilitaries  | ✔️          |
 | tmux         | ✔️          |
-| asdf         | ❌          |
 | gui          | ✔️          |
-| vim          | ❌          |
+| vim          | ✔️          |
+| asdf         | ❌          |
 
 ## Playbooks
 
