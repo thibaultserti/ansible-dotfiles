@@ -11,7 +11,7 @@ driver:
 platforms:
   - name: instance
     dockerfile: Dockerfile.j2
-    image: "pycontribs/fedora:latest"
+    image: "fedora:34"
 provisioner:
   name: ansible
   inventory:
