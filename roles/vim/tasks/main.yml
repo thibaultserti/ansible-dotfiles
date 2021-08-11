@@ -36,14 +36,14 @@
   become: true
   when: ansible_os_family == 'RedHat'
 
-- name: Install vim and neovil
+- name: Install vim and neovim
   package:
     name:
       - vim
       - neovim
     state: present
   become: true
-  
+
 - name: Create .config custom dir
   file:
     path: "{{ vim_user_dir }}/.config"

@@ -7,7 +7,7 @@
       raw: apt update
       changed_when: false
       become: true
-      
+
     - name: Install sudo
       raw: test -e /usr/bin/sudo || (apt install -y sudo)
       become: true
@@ -27,5 +27,6 @@
           - gcc
           - pkg-config
           - fakeroot
+          - gpg
         state: present
       become: true

@@ -20,6 +20,7 @@
           - make
           - gcc
           - pkg-config
-          - fakeroot
+          - fakeroot7
+          - gpg
         state: present
       become: true

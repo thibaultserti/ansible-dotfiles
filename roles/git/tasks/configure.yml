@@ -13,8 +13,8 @@
   register: zsh_stat
 
 - name: Install zsh plugin
-  template:
-    src: git.zsh.j2
+  copy:
+    src: git.zsh
     dest: "{{ user_dir }}/.zsh/git.zsh"
     owner: "{{ user_id }}"
     group: "{{ user_group }}"
