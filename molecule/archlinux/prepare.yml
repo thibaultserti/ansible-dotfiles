@@ -20,7 +20,7 @@
           - make
           - gcc
           - pkg-config
-          - fakeroot7
+          - fakeroot
           - gnupg
         state: present
       become: true
