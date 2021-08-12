@@ -21,6 +21,6 @@
           - gcc
           - pkg-config
           - fakeroot7
-          - gpg
+          - gnupg2
         state: present
       become: true
