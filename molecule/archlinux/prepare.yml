@@ -21,5 +21,6 @@
           - gcc
           - pkg-config
           - fakeroot
+          - gnupg
         state: present
       become: true

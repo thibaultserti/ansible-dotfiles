@@ -1,0 +1,44 @@
+---
+# tasks file for asdf
+
+- name: Install dependencies
+  package:
+    name:
+      - curl
+      - git
+    state: present
+  become: true
+
+- name: Install asdf from github
+  ansible.builtin.git:
+    repo: "https://github.com/asdf-vm/asdf.git"
+    dest: "{{ asdf_user_dir }}/.asdf"
+    version: "v0.8.1"
+
+- name: Check for bash installation
+  stat:
+    path: ~/.bash
+  register: bash_stat
+
+- name: Check for zsh installation
+  stat:
+    path: ~/.zsh
+  register: zsh_stat
+
+- name: Install bash completion
+  copy:
+    src: asdf.bash
+    dest: "{{ asdf_user_dir }}/.bash/asdf.zsh"
+    owner: "{{ asdf_user_id }}"
+    group: "{{ asdf_user_group }}"
+    mode: 0640
+  when: bash_stat.stat.exists
+
+- name: Install zsh plugin
+  copy:
+    src: asdf.zsh
+    dest: "{{ asdf_user_dir }}/.zsh/asf.zsh"
+    owner: "{{ asdf_user_id }}"
+    group: "{{ asdf_user_group }}"
+    mode: 0640
+  when: zsh_stat.stat.exists

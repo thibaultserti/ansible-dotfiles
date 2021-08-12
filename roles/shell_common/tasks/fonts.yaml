@@ -11,13 +11,22 @@
   become_user: aur_builder
   when: ansible_os_family == 'Archlinux'
 
+- name: Install fonts (Archlinux)
+  package:
+    name:
+      - ttf-fira-code
+    state: present
+  become: true
+  when: ansible_os_family == 'Archlinux'
+
+
 - name: Install fonts (Debian)
   package:
     name:
       - fonts-firacode
     state: present
   become: true
-  when: ansible_os_family == 'Archlinux'
+  when: ansible_os_family == 'Debian'
 
 - name: Install fonts (Fedora)
   package:

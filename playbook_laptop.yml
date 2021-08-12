@@ -71,6 +71,8 @@
     - role: "tmux"
     # VIM
     - role: "vim"
+    # ASDF
+    - role: "asdf"
     # GUI
     - role: "gui"
       tags:
