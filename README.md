@@ -23,7 +23,7 @@ Here is the list playbook ans roles I use.
 | tmux         | ✔️          |
 | gui          | ✔️          |
 | vim          | ✔️          |
-| asdf         | ❌          |
+| asdf         | ✔️          |
 
 ## Playbooks
 
