@@ -18,9 +18,10 @@
 
 - name: Create .neomutt dir
   file:
-    path: "{{ neomutt_user_dir }}/{{ neomutt_dir }}"
+    path: "{{ neomutt_user_dir }}/{{ neomutt_dir }}/accounts"
     state: directory
     mode: 0750
+    recurse: yes
 
 - name: Create .neomutt cache dir
   file:
