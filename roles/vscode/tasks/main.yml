@@ -29,7 +29,7 @@
   include_role:
     name: gantsign.visual-studio-code-extensions
   vars:
-    visual_studio_code_extensions_build: stable
+    visual_studio_code_extensions_build: insiders
     users:
       - username: "{{ vscode_user_id }}"
         visual_studio_code_extensions: "{{ extensions }}"
