@@ -7,6 +7,11 @@
     state: present
   become: true
 
+- name: Make sure a service unit is running
+  systemd:
+    state: started
+    name: snapd
+
 - name: Install vscode and vscode-insiders
   snap:
     name:
