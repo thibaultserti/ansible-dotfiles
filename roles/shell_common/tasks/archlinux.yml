@@ -1,5 +1,4 @@
 ---
-
 - name: Create aur_builder
   user:
     name: aur_builder
@@ -11,7 +10,6 @@
   become: true
   when: ansible_os_family == 'Archlinux'
 
-
 - name: add ability to run pacman to aur_builder
   lineinfile:
     path: /etc/sudoers.d/11-install-aur_builder
@@ -21,7 +19,6 @@
     validate: 'visudo -cf %s'
   become: true
   when: ansible_os_family == 'Archlinux'
-
 
 - name: Install yay (ArchLinux)
   raw: test -e /usr/bin/yay || (cd /tmp; git clone https://aur.archlinux.org/yay-bin.git; cd yay-bin; makepkg -sic --noconfirm)
@@ -36,3 +33,13 @@
     state: present
   when: (ansible_lsb.id is  defined) and (ansible_lsb.id == 'ManjaroLinux')
   become: true
+
+- name: Install construction binaries
+  community.general.pacman:
+    name:
+      - fakeroot
+      - binutils
+      - make
+    state: present
+  become: true
+  when: ansible_os_family == 'Archlinux'
