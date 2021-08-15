@@ -20,5 +20,7 @@ snap:
   - bitwarden
   - brave
   - discord
-  - slack
   - skype
+
+snap-classic:
+  - slack

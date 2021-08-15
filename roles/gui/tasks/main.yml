@@ -20,3 +20,11 @@
     state: present
   become: true
   loop: "{{ snap }}"
+
+- name: Install classic snap packages
+  snap:
+    name: "{{ item }}"
+    state: present
+    classic: yes
+  become: true
+  loop: "{{ snap-classic }}"
