@@ -87,7 +87,6 @@
           - PKief.material-icon-theme
           - Perkovec.emoji
           # utils
-          - CoenraadS.bracket-pair-colorizer
           - GrapeCity.gc-excelviewer
           - tomoki1207.pdf
           - evilz.vscode-reveal
