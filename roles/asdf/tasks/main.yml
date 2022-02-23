@@ -37,7 +37,7 @@
 - name: Install zsh plugin
   copy:
     src: asdf.zsh
-    dest: "{{ asdf_user_dir }}/.zsh/asf.zsh"
+    dest: "{{ asdf_user_dir }}/.zsh/asdf.zsh"
     owner: "{{ asdf_user_id }}"
     group: "{{ asdf_user_group }}"
     mode: 0640
