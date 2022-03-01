@@ -26,9 +26,9 @@ jobs:
     strategy:
       matrix:
         scenario:
-          - archlinux
-          - fedora
-          - default
+          - asdf-archlinux
+          - asdf-fedora
+          - asdf-ubuntu
     steps:
       - name: checkout
         uses: actions/checkout@v2
