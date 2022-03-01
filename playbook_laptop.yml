@@ -5,28 +5,9 @@
   roles:
     # ZSH
     - role: "zsh"
-      vars:
-        theme: agnoster
-        plugins:
-          - encode64
-          - sudo
-          - web-search
-          - z
-        custom_plugins:
-          - name: alias-tips
-            url: https://github.com/djui/alias-tips
-          - name: autoupdate
-            url: https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
-          - name: zsh-syntax-highlighting
-            url: https://github.com/zsh-users/zsh-syntax-highlighting
-          - name: zsh-autosuggestions
-            url: https://github.com/zsh-users/zsh-autosuggestions
-    # BASH
     - role: "bash"
     # UTILITIES
     - role: "utilities"
-      tags:
-        - notest
     # POWERSHELL
     - role: "powershell"
       vars:
@@ -36,8 +17,6 @@
         theme: paradox
     # GPG
     - role: "gpg"
-      tags:
-        - notest
       vars:
         default_key: "F2B6AEF1AA9B56B290C96AC07F9A9687E7CA0D86"
     # GIT
@@ -49,8 +28,6 @@
     # DOCKER
     - role: "docker"
       become: true
-      tags:
-        - notest
       vars:
         docker_package: "{{ 'docker' if ansible_os_family == 'Archlinux' }}"
         docker_service_enabled: false
@@ -59,14 +36,10 @@
           - "{{ ansible_user_id }}"
     # SSH
     - role: "ssh"
-      tags:
-        - notest
       vars:
         copy_keys: true
     # MUTT
     - role: "neomutt"
-      tags:
-        - notest
     # TMUX
     - role: "tmux"
     # VIM
@@ -75,12 +48,8 @@
     - role: "asdf"
     # GUI
     - role: "gui"
-      tags:
-        - notest
     # VSCODE
     - role: "vscode"
-      tags:
-        - notest
       vars:
         extensions:
           # themes and icons
