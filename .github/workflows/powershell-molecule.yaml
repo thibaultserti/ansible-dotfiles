@@ -1,0 +1,32 @@
+name: Molecule powershell
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "roles/powershell/**"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "roles/powershell/**"
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        scenario:
+          - powershell-archlinux
+          - powershell-fedora
+          - powershell-ubuntu
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+      - name: molecule
+        uses: robertdebock/molecule-action@2.6.17
+        with:
+          options: parallel
+          scenario: "${{ matrix.scenario }}"

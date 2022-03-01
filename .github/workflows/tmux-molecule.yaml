@@ -1,21 +1,25 @@
-name: Molecule
+name: Molecule tmux
 
 on:
   push:
     branches:
       - main
+    paths:
+      - "roles/tmux/**"
   pull_request:
     branches:
       - main
+    paths:
+      - "roles/tmux/**"
 jobs:
   test:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
         scenario:
-          - asdf-archlinux
-          - asdf-fedora
-          - asdf-ubuntu
+          - tmux-archlinux
+          - tmux-fedora
+          - tmux-ubuntu
     steps:
       - name: checkout
         uses: actions/checkout@v2
