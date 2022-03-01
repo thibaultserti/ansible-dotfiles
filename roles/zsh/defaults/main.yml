@@ -8,9 +8,14 @@ zsh_dir: .zsh
 plugins:
   - encode64
   - sudo
+  - web-search
   - z
 
 custom_plugins:
+  - name: alias-tips
+    url: https://github.com/djui/alias-tips
+  - name: autoupdate
+    url: https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
   - name: zsh-syntax-highlighting
     url: https://github.com/zsh-users/zsh-syntax-highlighting
   - name: zsh-autosuggestions
