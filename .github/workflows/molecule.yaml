@@ -8,27 +8,14 @@ on:
     branches:
       - main
 jobs:
-  lint:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-        with:
-          path: "${{ github.repository }}"
-      - name: molecule
-        uses: robertdebock/molecule-action@2.6.17
-        with:
-          command: lint
   test:
-    needs:
-      - lint
     runs-on: ubuntu-20.04
     strategy:
       matrix:
         scenario:
-          - archlinux
-          - fedora
-          - default
+          - asdf-archlinux
+          - asdf-fedora
+          - asdf-ubuntu
     steps:
       - name: checkout
         uses: actions/checkout@v2
