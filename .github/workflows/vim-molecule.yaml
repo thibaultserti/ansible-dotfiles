@@ -1,0 +1,32 @@
+name: Molecule vim
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "roles/vim/**"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "roles/vim/**"
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        scenario:
+          - vim-archlinux
+          - vim-fedora
+          - vim-ubuntu
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+      - name: molecule
+        uses: robertdebock/molecule-action@2.6.17
+        with:
+          options: parallel
+          scenario: "${{ matrix.scenario }}"
