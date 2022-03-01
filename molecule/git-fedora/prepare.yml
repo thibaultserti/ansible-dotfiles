@@ -1,0 +1,26 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install sudo
+      raw: test -e /usr/bin/sudo || (yum -y install sudo)
+      changed_when: false
+
+    - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (yum -y install python3)
+      become: true
+      changed_when: false
+
+    - name: Install usefull packages for testing
+      package:
+        name:
+          - git
+          - binutils
+          - make
+          - gcc
+          - pkg-config
+          - fakeroot
+          - gnupg2
+        state: present
+      become: true
