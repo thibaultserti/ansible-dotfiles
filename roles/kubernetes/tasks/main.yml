@@ -1,0 +1,118 @@
+---
+# tasks file for utilities
+
+- name: Download kubectl binary
+  get_url:
+    url: "https://storage.googleapis.com/kubernetes-release/release/v{{ kubectl_version }}/bin/{{ kubectl_os }}/{{ kubectl_arch }}/kubectl"
+    dest: "{{ kubectl_tmp_directory }}"
+  tags:
+    - kubectl
+  when: ansible_os_family != 'Archlinux'
+
+- name: Copy kubectl binary to destination directory
+  copy:
+    src: "{{ kubectl_tmp_directory }}/{{ item }}"
+    dest: "{{ kubectl_bin_directory }}/{{ item }}"
+    mode: "{{ kubectl_binary_mode }}"
+    owner: "{{ kubectl_owner }}"
+    group: "{{ kubectl_group }}"
+    remote_src: true
+  with_items:
+    - kubectl
+  when: ansible_os_family != 'Archlinux'
+
+- name: Install mutliple packages
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ packages }}"
+  when: ansible_os_family == 'Archlinux'
+
+- name: Download kubecolor binary
+  get_url:
+    url: "https://github.com/hidetatz/kubecolor/releases/download/v0.0.20/kubecolor_0.0.20_Linux_x86_64.tar.gz"
+    dest: "{{ kubectl_tmp_directory }}"
+  tags:
+    - kubecolor
+  when: ansible_os_family != 'Archlinux'
+
+- name: Unarchive kubecolor
+  unarchive:
+    src: "{{ kubectl_tmp_directory }}/kubecolor_0.0.20_Linux_x86_64.tar.gz"
+    dest: "{{ kubectl_tmp_directory }}"
+    remote_src: true
+  tags:
+    - kubecolor
+  when: ansible_os_family != 'Archlinux'
+
+- name: Copy kubecolor binary to destination directory
+  copy:
+    src: "{{ kubectl_tmp_directory }}/{{ item }}"
+    dest: "{{ kubectl_bin_directory }}/{{ item }}"
+    mode: "{{ kubectl_binary_mode }}"
+    owner: "{{ kubectl_owner }}"
+    group: "{{ kubectl_group }}"
+    remote_src: true
+  with_items:
+    - kubecolor
+  when: ansible_os_family != 'Archlinux'
+
+
+- name: Install kubecolor (ArchLinux)
+  community.general.pacman:
+    name: kubecolor
+    state: present
+    executable: yay
+    extra_args: --builddir /tmp
+  become: true
+  become_user: aur_builder
+  when: ansible_os_family == 'Archlinux'
+
+
+- name: Install kube-ps1 (ArchLinux)
+  community.general.pacman:
+    name: kube-ps1
+    state: present
+    executable: yay
+    extra_args: --builddir /tmp
+  become: true
+  become_user: aur_builder
+  when: ansible_os_family == 'Archlinux'
+
+- name: Check for bash installation
+  stat:
+    path: ~/.bash
+  register: bash_stat
+
+- name: Install kube-ps1 in bashrc
+  copy:
+    src: kube-ps1.bash
+    dest: "{{ user_dir }}/.bash/kube-ps1.bash"
+    owner: "{{ user_id }}"
+    group: "{{ user_group }}"
+    mode: 0640
+  when: bash_stat.stat.exists
+
+- name: Check for zsh installation
+  stat:
+    path: ~/.zsh
+  register: zsh_stat
+
+- name: Install zsh plugin
+  copy:
+    src: kubernetes.zsh
+    dest: "{{ user_dir }}/.zsh/kubernetes.zsh"
+    owner: "{{ user_id }}"
+    group: "{{ user_group }}"
+    mode: 0640
+  when: zsh_stat.stat.exists
+
+- name: Install kube-ps1 in zshrc
+  copy:
+    src: kube-ps1.zsh
+    dest: "{{ user_dir }}/.zsh/post_processing/kube-ps1.zsh"
+    owner: "{{ user_id }}"
+    group: "{{ user_group }}"
+    mode: 0640
+  when: zsh_stat.stat.exists

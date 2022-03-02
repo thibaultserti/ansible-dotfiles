@@ -33,6 +33,12 @@
     state: directory
     mode: 0750
 
+- name: Create .zsh post_processing dir
+  file:
+    path: "{{ zsh_user_dir }}/{{ zsh_dir }}/post_processing/"
+    state: directory
+    mode: 0750
+
 - name: Copy plugins
   template:
     src: plugins.zsh.j2
