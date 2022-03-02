@@ -5,6 +5,22 @@
   roles:
     # ZSH
     - role: "zsh"
+      vars:
+        theme: agnoster
+        plugins:
+          - encode64
+          - sudo
+          - web-search
+          - z
+        custom_plugins:
+          - name: alias-tips
+            url: https://github.com/djui/alias-tips
+          - name: autoupdate
+            url: https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
+          - name: zsh-syntax-highlighting
+            url: https://github.com/zsh-users/zsh-syntax-highlighting
+          - name: zsh-autosuggestions
+            url: https://github.com/zsh-users/zsh-autosuggestions
       tags: "zsh"
     - role: "bash"
       tags: "bash"
