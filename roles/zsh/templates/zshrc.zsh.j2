@@ -128,6 +128,19 @@ fi
 # shellcheck disable=SC1091
 source "$ZSH/oh-my-zsh.sh"
 
+DIRECTORY=~/{{ zsh_dir }}/post_processing
+{% raw %}
+if [ -d "$DIRECTORY" ]; then
+    files=("${(f)$(find "$DIRECTORY" -type f -name "*.zsh")}")
+    for file in "${files[@]}"; do
+        if [ "x$file" != "x" ]; then
+            # shellcheck disable=SC1090
+            source "$file"
+        fi
+    done
+fi
+{% endraw %}
+
 #------------------------------------------////
 # System Information:
 #------------------------------------------////

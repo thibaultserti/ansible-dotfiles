@@ -77,6 +77,9 @@
     # GUI
     - role: "gui"
       tags: "gui"
+    # KUBERNETES
+    - role: "kubernetes"
+      tags: "kubernetes"
     # VSCODE
     - role: "vscode"
       vars:
@@ -126,7 +129,7 @@
           - redhat.vscode-yaml
           - samuelcolvin.jinjahtml
           # Ansible
-          - zbr.vscode-ansible
+          - redhat.ansible
           # Kubernetes
           - ms-kubernetes-tools.vscode-kubernetes-tools
           # Terraform
