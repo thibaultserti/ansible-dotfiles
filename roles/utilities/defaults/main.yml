@@ -5,6 +5,7 @@ packages:
   - bat
   - htop
   - inxi
+  - ipcalc
   - jq
   - kdeconnect
   - less
