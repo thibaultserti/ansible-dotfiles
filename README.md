@@ -31,7 +31,9 @@ Here is the list playbook ans roles I use.
 
 `ansible-playbook -i hosts.ini --connection=local --ask-become-pass --ask-vault-pass playbook_laptop.yml`
 
-### Command for servers/VM
+You can add `--tags="tag1,tag2"` to only run some tags.
+
+### Command for servers/VM (Not ye implemented)
 
 `ansible-playbook -i hosts.ini --connection=local --ask-become-pass --ask-vault-pass playbook_server.yml`
 
