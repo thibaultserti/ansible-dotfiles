@@ -5,9 +5,12 @@
   roles:
     # ZSH
     - role: "zsh"
+      tags: "zsh"
     - role: "bash"
+      tags: "bash"
     # UTILITIES
     - role: "utilities"
+      tags: "utilities"
     # POWERSHELL
     - role: "powershell"
       vars:
@@ -15,16 +18,19 @@
           - oh-my-posh
           - posh-git
         theme: paradox
+      tags: "powershell"
     # GPG
     - role: "gpg"
       vars:
         default_key: "F2B6AEF1AA9B56B290C96AC07F9A9687E7CA0D86"
+      tags: "gpg"
     # GIT
     - role: "git"
       vars:
         git_name: Thibault Serti
         git_email: "thibault.serti@gmail.com"
         signingkey: "F2B6AEF1AA9B56B290C96AC07F9A9687E7CA0D86"
+      tags: "git"
     # DOCKER
     - role: "docker"
       become: true
@@ -34,20 +40,27 @@
         docker_install_compose: false
         docker_users:
           - "{{ ansible_user_id }}"
+      tags: docker
     # SSH
     - role: "ssh"
       vars:
         copy_keys: true
+      tags: "ssh"
     # MUTT
     - role: "neomutt"
+      tags: "neomutt"
     # TMUX
     - role: "tmux"
+      tags: "tmux"
     # VIM
     - role: "vim"
+      tags: "vim"
     # ASDF
     - role: "asdf"
+      tags: "asdf"
     # GUI
     - role: "gui"
+      tags: "gui"
     # VSCODE
     - role: "vscode"
       vars:
@@ -102,3 +115,4 @@
           - ms-kubernetes-tools.vscode-kubernetes-tools
           # Terraform
           - hashicorp.terraform
+      tags: "vscode"
