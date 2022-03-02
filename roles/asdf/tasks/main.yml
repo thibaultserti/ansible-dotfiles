@@ -28,7 +28,7 @@
 - name: Install bash completion
   copy:
     src: asdf.bash
-    dest: "{{ asdf_user_dir }}/.bash/asdf.zsh"
+    dest: "{{ asdf_user_dir }}/.bash/asdf.bash"
     owner: "{{ asdf_user_id }}"
     group: "{{ asdf_user_group }}"
     mode: 0640
