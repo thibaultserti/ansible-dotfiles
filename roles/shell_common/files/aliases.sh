@@ -22,10 +22,21 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Specific to some packages installation
 alias mcat='mdv'
-alias cat='bat'
-alias ping='prettyping'
-alias top="sudo htop"
-alias du="ncdu -rr -x --exclude .git --exclude node_modules"
+if command -v lsd >/dev/null 2>&1; then
+    alias ls='lsd'
+fi
+if command -v bat >/dev/null 2>&1; then
+    alias cat='bat'
+fi
+if command -v prettyping >/dev/null 2>&1; then
+    alias ping='prettyping'
+fi
+if command -v htop >/dev/null 2>&1; then
+    alias top="sudo htop"
+fi
+if command -v ncdu >/dev/null 2>&1; then
+    alias du="ncdu -rr -x --exclude .git --exclude node_modules"
+fi
 alias help='tldr'
 alias xclip='xclip -select clipboard'
 alias setup="tmuxinator start default"

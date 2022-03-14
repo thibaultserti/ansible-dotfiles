@@ -7,3 +7,20 @@
     state: present
   become: true
   loop: "{{ packages }}"
+
+- name: Install packages (Archlinux)
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ packages_arch }}"
+  when: ansible_os_family == 'ArchLinux'
+
+- name: Install packages (Debian)
+  apt:
+    deb: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ packages_deb }}"
+  when: ansible_os_family == 'Debian'
+  

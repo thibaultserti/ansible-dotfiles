@@ -32,6 +32,6 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-if command -v cat >/dev/null 2>&1; then
+if command -v bat >/dev/null 2>&1; then
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
