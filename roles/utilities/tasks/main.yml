@@ -14,7 +14,7 @@
     state: present
   become: true
   loop: "{{ packages_arch }}"
-  when: ansible_os_family == 'ArchLinux'
+  when: ansible_os_family == 'Archlinux'
 
 - name: Install packages (Debian)
   apt:
