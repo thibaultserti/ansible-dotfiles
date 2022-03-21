@@ -94,6 +94,7 @@
           - icrawl.discord-vscode
           - ms-vsliveshare.vsliveshare
           - ms-vsliveshare.vsliveshare-audio
+          - alefragnani.project-manager
           # Javascript and Typescript
           - dbaeumer.vscode-eslint
           - esbenp.prettier-vscode
